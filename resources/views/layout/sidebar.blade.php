@@ -3,6 +3,9 @@
         <!-- Sidebar Menu Start -->
         <ul class="navbar-nav iq-main-menu" id="sidebar-menu">
 
+
+
+
             <li class="nav-item static-item">
                 <a class="nav-link static-item disabled" href="#" tabindex="-1">
                     <span class="default-icon">Home</span>
@@ -46,6 +49,12 @@
                 </a>
             </li>
 
+
+
+
+
+
+
             <li class="nav-item static-item">
                 <a class="nav-link static-item disabled" href="#" tabindex="-1">
                     <span class="default-icon">Data</span>
@@ -87,10 +96,9 @@
                         </svg>
                     </i>
                 </a>
-                <ul class="sub-nav collapse" id="sidebar-user" data-bs-parent="#sidebar-menu">
+                <ul class="sub-nav collapse mt-1" id="sidebar-user" data-bs-parent="#sidebar-menu">
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('user-profile') ? 'active' : '' }}"
-                            href="../dashboard/app/user-profile.html">
+                        <a class="nav-link {{ request()->is('add-user') ? 'active' : '' }}" href="{{ url('user') }}">
                             <i class="icon">
                                 <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
                                     viewBox="0 0 24 24" fill="currentColor">
@@ -100,13 +108,12 @@
                                     </g>
                                 </svg>
                             </i>
-                            <i class="sidenav-mini-icon"> U </i>
-                            <span class="item-name">User Profile</span>
+                            <i class="sidenav-mini-icon"> D </i>
+                            <span class="item-name">Data User</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('add-user') ? 'active' : '' }}"
-                            href="../dashboard/app/user-add.html">
+                        <a class="nav-link {{ request()->is('user') ? 'active' : '' }}" href="{{ url('add-user') }}">
                             <i class="icon">
                                 <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
                                     viewBox="0 0 24 24" fill="currentColor">
@@ -116,31 +123,17 @@
                                     </g>
                                 </svg>
                             </i>
-                            <i class="sidenav-mini-icon"> A </i>
-                            <span class="item-name">Add User</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('user') ? 'active' : '' }}" href="{{ url('user') }}">
-                            <i class="icon">
-                                <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
-                                    viewBox="0 0 24 24" fill="currentColor">
-                                    <g>
-                                        <circle cx="12" cy="12" r="8" fill="currentColor">
-                                        </circle>
-                                    </g>
-                                </svg>
-                            </i>
-                            <i class="sidenav-mini-icon"> U </i>
-                            <span class="item-name">User List</span>
+                            <i class="sidenav-mini-icon"> T </i>
+                            <span class="item-name">Tambah User</span>
                         </a>
                     </li>
                 </ul>
             </li>
 
+
             <li class="nav-item mb-3">
-                <a class="nav-link {{ request()->is('produk') ? 'active' : '' }}" aria-current="page"
-                    href="{{ url('produk') }}">
+                <a class="nav-link" data-bs-toggle="collapse" href="#sidebar-produk" role="button"
+                    aria-expanded="false" aria-controls="sidebar-produk">
                     <i class="icon">
                         <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                             class="icon-20">
@@ -153,7 +146,47 @@
                         </svg>
                     </i>
                     <span class="item-name">Produk</span>
+                    <i class="right-icon">
+                        <svg class="icon-18" xmlns="http://www.w3.org/2000/svg" width="18" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 5l7 7-7 7" />
+                        </svg>
+                    </i>
                 </a>
+                <ul class="sub-nav collapse mt-1" id="sidebar-produk" data-bs-parent="#sidebar-menu">
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('produk') ? 'active' : '' }}" href="{{ url('produk') }}">
+                            <i class="icon">
+                                <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                    viewBox="0 0 24 24" fill="currentColor">
+                                    <g>
+                                        <circle cx="12" cy="12" r="8" fill="currentColor">
+                                        </circle>
+                                    </g>
+                                </svg>
+                            </i>
+                            <i class="sidenav-mini-icon"> D </i>
+                            <span class="item-name">Data Produk</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('add-produk') ? 'active' : '' }}"
+                            href="{{ url('add-produk') }}">
+                            <i class="icon">
+                                <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                    viewBox="0 0 24 24" fill="currentColor">
+                                    <g>
+                                        <circle cx="12" cy="12" r="8" fill="currentColor">
+                                        </circle>
+                                    </g>
+                                </svg>
+                            </i>
+                            <i class="sidenav-mini-icon"> T </i>
+                            <span class="item-name">Tambah Produk</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             <li class="nav-item mb-3">
@@ -171,6 +204,12 @@
                 </a>
             </li>
 
+
+
+
+
+
+
             <li class="nav-item static-item">
                 <a class="nav-link static-item disabled" href="#" tabindex="-1">
                     <span class="default-icon">Transaction</span>
@@ -179,8 +218,8 @@
             </li>
 
             <li class="nav-item mb-3">
-                <a class="nav-link {{ request()->is('pembelian') ? 'active' : '' }}" aria-current="page"
-                    href="{{ url('pembelian') }}">
+                <a class="nav-link" data-bs-toggle="collapse" href="#sidebar-pembelian" role="button"
+                    aria-expanded="false" aria-controls="sidebar-pembelian">
                     <i class="icon">
                         <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                             class="icon-20">
@@ -193,26 +232,115 @@
                         </svg>
                     </i>
                     <span class="item-name">Pembelian</span>
+                    <i class="right-icon">
+                        <svg class="icon-18" xmlns="http://www.w3.org/2000/svg" width="18" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 5l7 7-7 7" />
+                        </svg>
+                    </i>
                 </a>
+                <ul class="sub-nav collapse mt-1" id="sidebar-pembelian" data-bs-parent="#sidebar-menu">
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('pemesanan') ? 'active' : '' }}"
+                            href="{{ url('pemesanan') }}">
+                            <i class="icon">
+                                <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                    viewBox="0 0 24 24" fill="currentColor">
+                                    <g>
+                                        <circle cx="12" cy="12" r="8" fill="currentColor">
+                                        </circle>
+                                    </g>
+                                </svg>
+                            </i>
+                            <i class="sidenav-mini-icon"> P </i>
+                            <span class="item-name">Pemesanan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('pembelian') ? 'active' : '' }}"
+                            href="{{ url('pembelian') }}">
+                            <i class="icon">
+                                <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                    viewBox="0 0 24 24" fill="currentColor">
+                                    <g>
+                                        <circle cx="12" cy="12" r="8" fill="currentColor">
+                                        </circle>
+                                    </g>
+                                </svg>
+                            </i>
+                            <i class="sidenav-mini-icon"> B </i>
+                            <span class="item-name">Pembelian</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             <li class="nav-item mb-3">
-                <a class="nav-link {{ request()->is('penjualan') ? 'active' : '' }}" aria-current="page"
-                    href="{{ url('penjualan') }}">
+                <a class="nav-link" data-bs-toggle="collapse" href="#sidebar-penjualan" role="button"
+                    aria-expanded="false" aria-controls="sidebar-penjualan">
                     <i class="icon">
                         <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                             class="icon-20">
                             <path opacity="0.4"
-                                d="M22 16.084V7.916C22 4.377 19.724 2 16.335 2H7.665C4.276 2 2 4.377 2 7.916V16.084C2 19.622 4.277 22 7.666 22H16.335C19.724 22 22 19.622 22 16.084Z"
+                                d="M2 7.916V16.084C2 19.623 4.276 22 7.665 22H16.335C19.724 22 22 19.623 22 16.084V7.916C22 4.378 19.723 2 16.334 2H7.665C4.276 2 2 4.378 2 7.916Z"
                                 fill="currentColor"></path>
                             <path
-                                d="M16.2792 11.1445L12.5312 7.37954C12.2492 7.09654 11.7502 7.09654 11.4672 7.37954L7.71918 11.1445C7.42718 11.4385 7.42818 11.9135 7.72218 12.2055C8.01618 12.4975 8.49018 12.4975 8.78318 12.2035L11.2502 9.72654V16.0815C11.2502 16.4965 11.5862 16.8315 12.0002 16.8315C12.4142 16.8315 12.7502 16.4965 12.7502 16.0815V9.72654L15.2162 12.2035C15.3632 12.3505 15.5552 12.4235 15.7482 12.4235C15.9392 12.4235 16.1312 12.3505 16.2772 12.2055C16.5702 11.9135 16.5712 11.4385 16.2792 11.1445Z"
+                                d="M7.72033 12.8555L11.4683 16.6205C11.7503 16.9035 12.2493 16.9035 12.5323 16.6205L16.2803 12.8555C16.5723 12.5615 16.5713 12.0865 16.2773 11.7945C15.9833 11.5025 15.5093 11.5025 15.2163 11.7965L12.7493 14.2735V7.91846C12.7493 7.50346 12.4133 7.16846 11.9993 7.16846C11.5853 7.16846 11.2493 7.50346 11.2493 7.91846V14.2735L8.78333 11.7965C8.63633 11.6495 8.44433 11.5765 8.25133 11.5765C8.06033 11.5765 7.86833 11.6495 7.72233 11.7945C7.42933 12.0865 7.42833 12.5615 7.72033 12.8555Z"
                                 fill="currentColor"></path>
                         </svg>
                     </i>
                     <span class="item-name">Penjualan</span>
+                    <i class="right-icon">
+                        <svg class="icon-18" xmlns="http://www.w3.org/2000/svg" width="18" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 5l7 7-7 7" />
+                        </svg>
+                    </i>
                 </a>
+                <ul class="sub-nav collapse mt-1" id="sidebar-penjualan" data-bs-parent="#sidebar-menu">
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('penawaran') ? 'active' : '' }}"
+                            href="{{ url('penawaran') }}">
+                            <i class="icon">
+                                <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                    viewBox="0 0 24 24" fill="currentColor">
+                                    <g>
+                                        <circle cx="12" cy="12" r="8" fill="currentColor">
+                                        </circle>
+                                    </g>
+                                </svg>
+                            </i>
+                            <i class="sidenav-mini-icon"> P </i>
+                            <span class="item-name">Penawaran</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('penjualan') ? 'active' : '' }}"
+                            href="{{ url('penjualan') }}">
+                            <i class="icon">
+                                <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                    viewBox="0 0 24 24" fill="currentColor">
+                                    <g>
+                                        <circle cx="12" cy="12" r="8" fill="currentColor">
+                                        </circle>
+                                    </g>
+                                </svg>
+                            </i>
+                            <i class="sidenav-mini-icon"> B </i>
+                            <span class="item-name">Penjualan</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
+
+
+
+
+
+
+
 
             <li class="nav-item static-item">
                 <a class="nav-link static-item disabled" href="#" tabindex="-1">
@@ -244,6 +372,9 @@
                     <span class="item-name">Laporan</span>
                 </a>
             </li>
+
+
+
 
             <hr class="hr-horizontal">
         </ul>

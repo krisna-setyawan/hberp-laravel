@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Haebot ERP</title>
+    <title>Haebot ERP - Login</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('/') }}assets/images/favicon.ico" />
@@ -51,85 +51,77 @@
                                     <a href="#" class="navbar-brand d-flex align-items-center mb-3">
 
                                         <!--Logo start-->
-                                        <div class="logo-main">
-                                            <div class="logo-normal">
-                                                <svg class="text-primary icon-30" viewBox="0 0 30 30" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="-0.757324" y="19.2427" width="28" height="4"
-                                                        rx="2" transform="rotate(-45 -0.757324 19.2427)"
-                                                        fill="currentColor" />
-                                                    <rect x="7.72803" y="27.728" width="28" height="4"
-                                                        rx="2" transform="rotate(-45 7.72803 27.728)"
-                                                        fill="currentColor" />
-                                                    <rect x="10.5366" y="16.3945" width="16" height="4"
-                                                        rx="2" transform="rotate(45 10.5366 16.3945)"
-                                                        fill="currentColor" />
-                                                    <rect x="10.5562" y="-0.556152" width="28" height="4"
-                                                        rx="2" transform="rotate(45 10.5562 -0.556152)"
-                                                        fill="currentColor" />
-                                                </svg>
-                                            </div>
-                                            <div class="logo-mini">
-                                                <svg class="text-primary icon-30" viewBox="0 0 30 30" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="-0.757324" y="19.2427" width="28" height="4"
-                                                        rx="2" transform="rotate(-45 -0.757324 19.2427)"
-                                                        fill="currentColor" />
-                                                    <rect x="7.72803" y="27.728" width="28" height="4"
-                                                        rx="2" transform="rotate(-45 7.72803 27.728)"
-                                                        fill="currentColor" />
-                                                    <rect x="10.5366" y="16.3945" width="16" height="4"
-                                                        rx="2" transform="rotate(45 10.5366 16.3945)"
-                                                        fill="currentColor" />
-                                                    <rect x="10.5562" y="-0.556152" width="28" height="4"
-                                                        rx="2" transform="rotate(45 10.5562 -0.556152)"
-                                                        fill="currentColor" />
-                                                </svg>
-                                            </div>
-                                        </div>
+
                                         <!--logo End-->
 
                                         <h4 class="logo-title ms-3">Haebot</h4>
                                     </a>
                                     <h2 class="mb-2 text-center">Sign In</h2>
-                                    <p class="text-center">Use your credentials to login.</p>
-                                    <form>
+                                    <p class="text-center">Gunakan kredensialmu untuk masuk.</p>
+
+                                    @if (session()->has('success'))
+                                        <div class="alert alert-left alert-success alert-dismissible fade show mb-3"
+                                            role="alert">
+                                            <span> {{ session('success') }} </span>
+                                            <button type="button" class="btn-close btn-close-white"
+                                                data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    @endif
+
+                                    @if (session()->has('loginError'))
+                                        <div class="alert alert-left alert-danger alert-dismissible fade show mb-3"
+                                            role="alert">
+                                            <span> {{ session('loginError') }} </span>
+                                            <button type="button" class="btn-close btn-close-white"
+                                                data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    @endif
+
+                                    <form method="POST" action="/login">
+
+                                        @csrf
+
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="form-group">
                                                     <label for="email" class="form-label">Email</label>
-                                                    <input type="email" class="form-control" id="email"
-                                                        aria-describedby="email" placeholder=" ">
+                                                    <input type="email"
+                                                        class="form-control @error('email') is-invalid @enderror"
+                                                        id="email" name="email" value="{{ old('email') }}"
+                                                        autofocus>
+                                                    @error('email')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="form-group">
                                                     <label for="password" class="form-label">Password</label>
-                                                    <input type="password" class="form-control" id="password"
-                                                        aria-describedby="password" placeholder=" ">
+                                                    <input type="password"
+                                                        class="form-control @error('password') is-invalid @enderror""
+                                                        id="password" name="password">
+                                                    @error('password')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 d-flex justify-content-between">
-                                                <div class="form-check mb-3">
-                                                    <input type="checkbox" class="form-check-input"
-                                                        id="customCheck1">
-                                                    <label class="form-check-label" for="customCheck1">Remember
-                                                        Me
-                                                    </label>
-                                                </div>
-                                                <a href="recoverpw.html">Forgot Password?</a>
+                                                <a href="recoverpw.html">Lupa password?</a>
                                             </div>
                                         </div>
 
                                         <div class="d-flex justify-content-center">
-                                            <a href="{{ url('dashboard') }}">
-                                                <button type="button" class="btn btn-primary">Sign In</button>
-                                            </a>
+                                            <button type="submit" class="btn btn-primary">Sign In</button>
                                         </div>
 
                                         <p class="mt-3 text-center">
-                                            Don't have an account?
-                                            <a href="sign-up.html" class="text-underline">Click here to sign up.</a>
+                                            Belum punya akun?
+                                            <a href="{{ url('register') }}" class="text-underline">Klik disini untuk
+                                                mendaftar.</a>
                                         </p>
                                     </form>
                                 </div>

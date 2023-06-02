@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Auth;
+use App\Http\Controllers\Auth\Login;
+use App\Http\Controllers\Auth\Register;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Users\User;
 use Illuminate\Support\Facades\Route;
@@ -19,10 +20,17 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::group(['middleware' => 'prevent-back-history'], function () {
 
+    Route::get('/', [Login::class, 'index'])->name('login')->middleware('guest');
+    Route::get('/login', [Login::class, 'index'])->name('login')->middleware('guest');
+    Route::post('/login', [Login::class, 'authenticate']);
 
-Route::get('/', [Auth::class, 'index']);
+    Route::get('/register', [Register::class, 'index'])->name('sign-up')->middleware('guest');
+    Route::post('/register', [Register::class, 'store']);
 
+    Route::post('/logout', [Login::class, 'logout']);
 
-Route::get('dashboard', [Dashboard::class, 'index'])->name('dashboard');
-Route::get('user', [User::class, 'index'])->name('user');
+    Route::get('dashboard', [Dashboard::class, 'index'])->name('dashboard')->middleware('auth');
+    Route::get('user', [User::class, 'index'])->name('user')->middleware('auth');
+});

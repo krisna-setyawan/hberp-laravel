@@ -214,7 +214,7 @@
                                         alt="User-Profile" class="img-fluid avatar avatar-50 avatar-rounded ms-4">
 
                                     <div class="caption ms-3 d-none d-md-block ">
-                                        <h6 class="mb-0 caption-title">Austin Robertson</h6>
+                                        <h6 class="mb-0 caption-title">{{ Auth::user()->nama }}</h6>
                                         {{-- <p class="mb-0 caption-sub-title">Marketing Administrator</p> --}}
                                     </div>
                                 </a>
@@ -226,7 +226,10 @@
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="../dashboard/auth/sign-in.html">Logout</a>
+                                        <form action="/logout" method="POST">
+                                            @csrf
+                                            <button class="dropdown-item" type="submit">Logout</button>
+                                        </form>
                                     </li>
                                 </ul>
                             </li>
